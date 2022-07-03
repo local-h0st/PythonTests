@@ -33,7 +33,7 @@ def decoratorFunction(name_of_func_to_be_decorated):
         # decorating...
         print('[Decorator]')
         # decorator ended
-        return name_of_func_to_be_decorated(*args, **kwargs)
+        return name_of_func_to_be_decorated(*args, **kwargs)    # return的时候会调用原来的函数！是调用！
 
     return decoratedFunc
 
@@ -60,3 +60,5 @@ print(originFunc2(666))
 print(f(666))
 
 #################################
+
+
