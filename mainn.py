@@ -1,6 +1,7 @@
 f = lambda x=3: 'purelov' + str(x)
 print(f(1))
 
+
 #####################################
 
 def rtnlam(int, strr):
@@ -8,5 +9,5 @@ def rtnlam(int, strr):
 
 
 g = rtnlam(1, 'purelove')
-print(g(2,'dfghj'))
+print(g(2, 'dfghj'))
 print(g())
