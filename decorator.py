@@ -1,3 +1,6 @@
+import functools
+
+
 def rtnWapperedFunc(f):
     def WapperedFunc(x):
         print('[Decorator]Calling', f.__name__)
@@ -128,4 +131,59 @@ def fff(str):
 
 rst = fff('purelove')
 print(rst)
-print('{ fff.__name__ : }',fff.__name__)
+print('{ fff.__name__ : }', fff.__name__)
+
+
+def createDecoratedFuncs2(oriFunc):
+    @functools.wraps(oriFunc)
+    def decoratedF(*args, **kwargs):
+        print('[ Decorator ] decorated head')
+        return oriFunc(*args, **kwargs)
+
+    return decoratedF
+
+
+# add @functools.wraps(oriF)
+@createDecoratedFuncs2
+def ggg(str):
+    print('[ msg printed in ggg ]', str)
+    return '[ msg returned by ggg ] ' + str
+
+
+rst = ggg('purelove')
+print(rst)
+print('{ ggg.__name__ : }', ggg.__name__)
+
+
+# 带参数的decorator：
+def rtnCrtFunc(msg):
+    def crtFunc(f):
+        @functools.wraps(f)
+        def decoratedFucn(*args, **kwargs):
+            print('[Decorator msg] :', msg)
+            return f(*args, **kwargs)
+
+        return decoratedFucn
+
+    return crtFunc
+
+
+@rtnCrtFunc('message given as parameter')
+def hhh(msg):
+    print('[msg printed in hhh()]', msg)
+    return '[msg returned by hhh()] ' + msg
+
+
+print(hhh('purelove'))
+print('hhh.__name :', hhh.__name__)
+
+
+
+def a(msg):
+    print('[msg printed in hhh()]', msg)
+    return '[msg returned by hhh()] ' + msg
+
+
+rst = rtnCrtFunc('this is msg given as parameter for function a()')(a)('this is msg given to function a()')
+print(rst)
+print(rtnCrtFunc('this is msg given as parameter for function a()')(a).__name__)
