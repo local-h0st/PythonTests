@@ -8,6 +8,5 @@ def rtnlam(int, strr):
 
 
 g = rtnlam(1, 'purelove')
-h = rtnlam(1,'purelove')
 print(g(2,'dfghj'))
-print(h())
+print(g())
