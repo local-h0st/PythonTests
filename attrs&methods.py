@@ -107,3 +107,5 @@ d3 = D()
 
 print('count of d2.count', d2.count)
 print('count of', D.__name__, D.count)
+
+# 静态方法和类方法都要用装饰器修饰，实例方法是最常见和普遍的，魔术方法就涉及到反序列化了

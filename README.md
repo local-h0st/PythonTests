@@ -1,2 +1,8 @@
 # PythonTests
 ***Recently I've been learning Python and these .py files are some tests of Python features***
+
+**以下未曾深入探讨 :**
+1. 类方法
+2. 静态方法
+3. 魔术方法 和 反序列化漏洞
+4. __slots__特性
