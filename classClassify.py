@@ -204,3 +204,34 @@ print(Path().etc.passwd)
 print(Path.count)
 # print一个对象和在类里面print self是同一个东西
 # 能看出创建了三次不同的对象
+
+print('############### 带参数的链式调用 #################')
+
+class PathAdvanced(object):
+    @log('__init__')
+    def __init__(self,path = '/'):
+        self.__path = path
+
+    @log('__getattr__')
+    def __getattr__(self, item):
+        if isinstance(item, str):
+            return PathAdvanced(self.__path + item + '/')
+        else:
+            raise RuntimeError('path invalid')
+
+    @log('__call__')
+    # def __call__(self, *args, **kwargs):      仅写支持传入一个参数的
+    def __call__(self, arg):
+        if isinstance(arg,str):
+            return PathAdvanced(self.__path[:len(self.__path)-1] + ':' + arg + '/')
+        else:
+            raise RuntimeError('invalid arg')
+
+    @log('__str__')
+    def __str__(self):
+        return 'Path : ' + self.__path
+
+
+print(PathAdvanced().usr('PureLov3').bin.cat('testing success!').hhhhhhh)
+
+# 通过callable()函数，我们可以判断一个对象是否是“可调用”对象。可以是函数，也可以是带有__call__()方法的对象
